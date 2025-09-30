@@ -41,17 +41,19 @@ export default function App() {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Lista de Veículos</Text>
-      {veiculos.map((item) => (
-        <View key={item.codVeiculo} style={styles.card}>
-          <Image source={{ uri: item.linkFoto }} style={styles.image} />
-          <View style={styles.info}>
-            <Text style={styles.modelo}>{item.modelo}</Text>
-            <Text style={styles.marca}>{item.marca}</Text>
-            <Text style={styles.detalhes}>Ano: {item.anoFabricacao}</Text>
-            <Text style={styles.preco}>Preço: R$ {item.preco}</Text>
+      <View style={styles.grid}>
+        {veiculos.map((item) => (
+          <View key={item.codVeiculo} style={styles.card}>
+            <Image source={{ uri: item.linkFoto }} style={styles.image} />
+            <View style={styles.info}>
+              <Text style={styles.modelo}>{item.modelo}</Text>
+              <Text style={styles.marca}>Marca: {item.marca}</Text>
+              <Text style={styles.ano}>Ano: {item.anoFabricacao}</Text>
+              <Text style={styles.preco}>R$ {item.preco}</Text>
+            </View>
           </View>
-        </View>
-      ))}
+        ))}
+      </View>
     </ScrollView>
   );
 }
@@ -68,10 +70,16 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     textAlign: "center",
   },
+  grid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+  },
   card: {
     backgroundColor: "#fff",
     borderRadius: 10,
     marginBottom: 15,
+    width: "48%", // duas colunas
     overflow: "hidden",
     elevation: 3,
     shadowColor: "#000",
@@ -81,29 +89,28 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    height: 180,
+    height: 120,
     resizeMode: "cover",
   },
   info: {
-    padding: 10,
+    padding: 8,
   },
   modelo: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: "bold",
   },
   marca: {
-    fontSize: 16,
+    fontSize: 12,
     color: "#555",
-    marginBottom: 5,
   },
-  detalhes: {
-    fontSize: 14,
+  ano: {
+    fontSize: 12,
     color: "#777",
   },
   preco: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "bold",
-    color: "#007bff",
+    color: "red",
     marginTop: 5,
   },
   loading: {
